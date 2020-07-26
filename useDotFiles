@@ -1,0 +1,11 @@
+#!/bin/bash
+#########################
+# This script creates symlinks from the home directory to dot files in this git repo
+#########################
+
+## vars
+dir=~/dotfiles
+echo "Assume that this repository is in ${dir}"
+
+# nvim
+ln -s $dir/init.vim ~/.config/nvim/init.vim
