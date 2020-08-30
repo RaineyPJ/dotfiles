@@ -5,10 +5,7 @@ let g:python_host_prog='C:/Users/patra/Miniconda3/envs/neovim/python.exe'
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
-Plug 'preservim/nerdtree'
 Plug 'flazz/vim-colorschemes'
 Plug 'moll/vim-bbye'
 Plug 'drewtempelmeyer/palenight.vim'
@@ -28,7 +25,15 @@ filetype plugin indent on
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 set wildmenu
-set autowrite
+set nowrap
+
+" Allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
+
+" Allow a buffer to be hidden, i.e. contain unsaved changes.
+" This should be unecessary with autowrite, but netrw looks for hidden before
+" splitting when :E is called.
+set hidden
 
 " Enable the mouse in normal and visual modes
 set mouse=nv
@@ -54,8 +59,6 @@ nnoremap <Leader>/ :nohlsearch<CR>
 
 syntax enable
 
-set shiftwidth=4
-set tabstop=4
 set expandtab
 
 " Enable searching in sub-directories for files
@@ -85,5 +88,12 @@ nnoremap <Leader>q :Bdelete<CR>
 " See: https://github.com/wellle/targets.vim#gtargets_seekranges
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr lb ar ab lB Ar aB Ab AB rr ll rb al rB Al bb aa bB Aa BB AA'
 
+augroup mycs
+    au!
+    autocmd FileType cs set suffixesadd=.cs
+    autocmd FileType cs set shiftwidth=4
+    autocmd FileType cs set tabstop=4
+augroup END
+
 " OmniSharp setting are in a separate file, so source here is wanted
-source OmniSharp.vim
+" source OmniSharp.vim
