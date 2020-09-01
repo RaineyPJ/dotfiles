@@ -35,6 +35,11 @@ set backspace=indent,eol,start
 " splitting when :E is called.
 set hidden
 
+let mapleader= " "
+
+" Save all
+nnoremap <Leader>s :wall<cr>
+
 " Enable the mouse in normal and visual modes
 set mouse=nv
 
@@ -44,11 +49,10 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
+nnoremap <C-s> <C-w><C-v>
 
 " Add a Stamp comand that pastes over the top of the current word
 nnoremap S diw"0P
-
-let mapleader= " "
 
 set scrolloff=3
 
@@ -60,6 +64,8 @@ nnoremap <Leader>/ :nohlsearch<CR>
 syntax enable
 
 set expandtab
+
+set grepprg=grep\ -n\ -r\ --color\ --include='*.*'\ $*
 
 " Enable searching in sub-directories for files
 set path+=**
@@ -91,6 +97,7 @@ let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr lb ar ab lB Ar aB Ab AB rr l
 augroup mycs
     au!
     autocmd FileType cs set suffixesadd=.cs
+    autocmd FileType cs set isfname=@,48-57,-,_
     autocmd FileType cs set shiftwidth=4
     autocmd FileType cs set tabstop=4
 augroup END
