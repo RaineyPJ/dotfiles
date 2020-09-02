@@ -1,11 +1,10 @@
 fish_vi_key_bindings
 
-cd ~
-
 alias gs="git status"
 alias g="git"
 
 alias dnt="dotnet test"
+alias dnrb="dotnet build --no-incremental"
 
 alias vi="nvim"
 
