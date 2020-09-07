@@ -9,6 +9,8 @@ Plug 'wellle/targets.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'moll/vim-bbye'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'milkypostman/vim-togglelist'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -57,8 +59,8 @@ nnoremap S diw"0P
 set scrolloff=3
 
 set incsearch
-set ignorecase
-set smartcase
+" set ignorecase
+" set smartcase
 nnoremap <Leader>/ :nohlsearch<CR>
 
 syntax enable
@@ -87,7 +89,9 @@ endfun
 let NERDTreeIgnore = ['^bin$','^obj$']
 
 " bbye mapping
-nnoremap <Leader>q :Bdelete<CR>
+" I haven't found myself using this, have have added vim-togglelist which
+" clashes with this mapping
+" nnoremap <Leader>q :Bdelete<CR>
 
 " targets settings
 " Prefer multiline targets around cursor over distant targets within cursor
@@ -100,6 +104,9 @@ augroup mycs
     autocmd FileType cs set isfname=@,48-57,-,_
     autocmd FileType cs set shiftwidth=4
     autocmd FileType cs set tabstop=4
+    autocmd FileType cs setlocal grepprg=grep\ -n\ -r\ --color\ --include='*.cs'\ $*
+    autocmd FileType cs set errorformat=%f(%l\\,%c)%m
+    autocmd FileType cs set makeprg=dotnet\ build\ /p:GenerateFullPaths=true
 augroup END
 
 " OmniSharp setting are in a separate file, so source here is wanted
