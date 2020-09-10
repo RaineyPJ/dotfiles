@@ -11,6 +11,7 @@ Plug 'moll/vim-bbye'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
+Plug 'tckmn/vim-minisnip'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -42,16 +43,27 @@ let mapleader= " "
 " Save all
 nnoremap <Leader>s :wall<cr>
 
+" User visual mode selection to search
+vmap <Leader>/ y/<C-R>"<CR>
+
 " Enable the mouse in normal and visual modes
 set mouse=nv
 
 " Mappings of core Vim commands that have bad defaults
 inoremap jk <ESC>
+
+" Remap splits navigation to just CTRL + hjkl
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-s> <C-w><C-v>
+
+" Make adjusing split sizes a bit more friendly
+noremap <silent> <C-Left> :vertical resize -3<CR>
+noremap <silent> <C-Right> :vertical resize +3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
 
 " Add a Stamp comand that pastes over the top of the current word
 nnoremap S diw"0P
