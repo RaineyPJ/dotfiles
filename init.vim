@@ -7,10 +7,18 @@ call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'wellle/targets.vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'moll/vim-bbye'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
+
+" plugins that I have tried, but don't use anymore.
+" 'moll/vim-bbye'
+
+" plugins that I would like to try one day.
+" 'dkprice/vim-easygrep' 
+" surround (tpope)
+" coc
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
