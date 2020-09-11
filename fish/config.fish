@@ -22,5 +22,5 @@ alias ll="ls -l -h $argv"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /home/patra/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+eval ~/miniconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<

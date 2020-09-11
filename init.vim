@@ -1,6 +1,9 @@
 let g:python3_host_prog='C:/Users/patra/Miniconda3/envs/neovim3/python.exe'
 let g:python_host_prog='C:/Users/patra/Miniconda3/envs/neovim/python.exe'
 
+" Areas to work on my Vim-fu
+" Folds
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
@@ -17,6 +20,7 @@ Plug 'milkypostman/vim-togglelist'
 
 " plugins that I would like to try one day.
 " coc
+" FZF
 " NerdTree
 " vim-vinegar
 " UltiSnip
@@ -64,6 +68,7 @@ set mouse=nv
 
 " Mappings of core Vim commands that have bad defaults
 inoremap jk <ESC>
+nnoremap <F5> :make<CR>
 
 " Remap splits navigation to just CTRL + hjkl
 nnoremap <C-h> <C-w><C-h>
