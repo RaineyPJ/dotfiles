@@ -10,13 +10,14 @@ call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'wellle/targets.vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
 
 " plugins that I have tried, but don't use anymore.
 " 'moll/vim-bbye'
 " 'tckmn/vim-minisnip'
+" 'drewtempelmeyer/palenight.vim'
+" 'felixhummel/setcolors.vim'
 
 " plugins that I would like to try one day.
 " coc
@@ -108,7 +109,7 @@ set relativenumber
 
 " Colorscheme
 set background=dark
-colorscheme apprentice
+colorscheme Black
 
 function! SynGroup()                                                            
     let l:s = synID(line('.'), col('.'), 1)                                       
