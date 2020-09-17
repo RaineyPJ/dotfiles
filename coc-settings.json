@@ -1,0 +1,5 @@
+{
+        "diagnostic.messageTarget": "echo",
+        "suggest.enablePreselect": false,
+        "suggest.localityBonus": true
+}
