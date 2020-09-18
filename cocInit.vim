@@ -1,3 +1,10 @@
+" CoC setup 
+" This works okay. My main issues are:
+"       It doesn't offer a way to run one unit test
+"       The documentation given by show_documentation is a bit rubbish
+"               No way to cycle through overloads
+"       My status line has gone!
+
 " TextEdit might fail if hidden is not set.
 set hidden
 

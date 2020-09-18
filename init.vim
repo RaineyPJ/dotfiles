@@ -157,5 +157,5 @@ augroup mycs
 augroup END
 
 " OmniSharp setting are in a separate file, so source here is wanted
-" source OmniSharp.vim
+" source ~/.config/nvim/OmniSharp.vim
 source ~/.config/nvim/cocInit.vim
