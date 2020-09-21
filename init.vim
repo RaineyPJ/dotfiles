@@ -1,5 +1,6 @@
-let g:python3_host_prog='C:/Users/patra/Miniconda3/envs/neovim3/python.exe'
-let g:python_host_prog='C:/Users/patra/Miniconda3/envs/neovim/python.exe'
+" I can't remember why I put these two lines here. Omnisharp-vim maybe?
+"let g:python3_host_prog='C:/Users/patra/Miniconda3/envs/neovim3/python.exe'
+"let g:python_host_prog='C:/Users/patra/Miniconda3/envs/neovim/python.exe'
 
 " Areas to work on my Vim-fu
 " Folds
@@ -12,6 +13,7 @@ Plug 'wellle/targets.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " plugins that I have tried, but don't use anymore.
 " 'moll/vim-bbye'
@@ -106,6 +108,20 @@ set grepprg=grep\ -n\ -r\ --color\ --include='*.*'\ $*
 " Enable searching in sub-directories for files
 set path+=**
 
+let g:clipboard = {
+      \   'name': 'myClipboard',
+      \   'copy': {
+      \      '+': 'clip.exe',
+      \      '*': 'clip.exe',
+      \    },
+      \   'paste': {
+      \      '+': "powershell.exe -command Get-Clipboard",
+      \      '*': "powershell.exe -command Get-Clipboard",
+      \   },
+      \   'cache_enabled': 1,
+      \ }
+    
+
 " Relative number
 set number
 set relativenumber
@@ -149,4 +165,5 @@ augroup mycs
 augroup END
 
 " OmniSharp setting are in a separate file, so source here is wanted
-" source OmniSharp.vim
+" source ~/.config/nvim/OmniSharp.vim
+source ~/.config/nvim/cocInit.vim
