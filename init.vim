@@ -58,6 +58,9 @@ set hidden
 
 let mapleader= " "
 
+" :q
+nnoremap <Leader>q :q<CR>
+
 " Save all
 nnoremap <Leader>s :wall<cr>
 
@@ -69,7 +72,7 @@ set mouse=nv
 
 " Mappings of core Vim commands that have bad defaults
 inoremap jk <ESC>
-nnoremap <F5> :make<CR>
+nnoremap <F5> :wall<CR>:make<CR>
 
 " Remap splits navigation to just CTRL + hjkl
 nnoremap <C-h> <C-w><C-h>
@@ -128,6 +131,11 @@ let NERDTreeIgnore = ['^bin$','^obj$']
 " Prefer multiline targets around cursor over distant targets within cursor
 " See: https://github.com/wellle/targets.vim#gtargets_seekranges
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr lb ar ab lB Ar aB Ab AB rr ll rb al rB Al bb aa bB Aa BB AA'
+
+" togglelist settings
+let g:toggle_list_no_mappings=1
+nmap <silent> <leader>l :call ToggleLocationList()<CR>
+nmap <silent> <leader>c :call ToggleQuickfixList()<CR>
 
 augroup mycs
     au!
