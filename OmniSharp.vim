@@ -1,18 +1,8 @@
 " ALE and Omnisharp setup
-" Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
-
-" Declare the list of plugins.
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'w0rp/ale'
-" List ends here. Plugins become visible to Vim after this call.
-call plug#end()
-
-set nocompatible
-
 
 " ALE mappings
 nmap <silent> <leader>j <Plug>(ale_next)
+nmap <silent> <leader>k <Plug>(ale_previous))
 " Tell ALE to use OmniSharp for linting C# files, and no other linters.
 let g:ale_linters = { 'cs': ['OmniSharp'] }
 
@@ -22,7 +12,7 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 set completeopt=longest,menuone,preview
 " Set desired preview window height for viewing documentation.
 set previewheight=5
-let g:OmniSharp_highlighting = 3
+let g:OmniSharp_highlighting = 0
 let g:OmniSharp_start_server = 0
 
 augroup omnisharp_commands
@@ -45,6 +35,7 @@ augroup omnisharp_commands
   autocmd FileType cs nmap <silent> <buffer> <Leader>fx <Plug>(omnisharp_fix_usings)
   autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
   autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>r <Plug>(omnisharp_run_test)
 
   " Navigate up and down by method/property/field
   autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)

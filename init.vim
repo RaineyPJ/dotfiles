@@ -10,16 +10,21 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 Plug 'wellle/targets.vim'
-Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'w0rp/ale'
+Plug 'chriskempson/base16-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 
 " plugins that I have tried, but don't use anymore.
 " 'moll/vim-bbye'
 " 'tckmn/vim-minisnip'
+" 'flazz/vim-colorschemes'
 " 'drewtempelmeyer/palenight.vim'
 " 'felixhummel/setcolors.vim'
+" 'neoclide/coc.nvim', {'branch': 'release'}
 
 " plugins that I would like to try one day.
 " coc
@@ -128,7 +133,22 @@ set relativenumber
 
 " Colorscheme
 set background=dark
-colorscheme Black
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+hi Normal ctermbg=NONE
+call Base16hi("Comment", "", "", g:base16_cterm0B, "", "bold,italic", "")
+
+function! s:base16_customize() abort
+        call Base16hi("Comment", "", "", g:base16_cterm02, "", "bold,italic", "")
+endfunction
+
+augroup on_change_colorschema
+        autocmd!
+        " autocmd ColorScheme * hi Normal ctermbg=NONE
+        " autocmd ColorScheme * call s:base16_customize()
+augroup END
 
 function! SynGroup()                                                            
     let l:s = synID(line('.'), col('.'), 1)                                       
@@ -136,7 +156,7 @@ function! SynGroup()
 endfun
 
 " NerdTree settings
-let NERDTreeIgnore = ['^bin$','^obj$']
+" let NERDTreeIgnore = ['^bin$','^obj$']
 
 " bbye mapping
 " I haven't found myself using this, have have added vim-togglelist which
@@ -164,6 +184,12 @@ augroup mycs
     autocmd FileType cs set makeprg=dotnet\ build\ /p:GenerateFullPaths=true
 augroup END
 
+" Deoplete settings
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('sources', {
+\ 'cs': ['omnisharp'],
+\})
+
 " OmniSharp setting are in a separate file, so source here is wanted
-" source ~/.config/nvim/OmniSharp.vim
-source ~/.config/nvim/cocInit.vim
+source ~/.config/nvim/OmniSharp.vim
+" source ~/.config/nvim/cocInit.vim
