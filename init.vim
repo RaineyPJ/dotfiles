@@ -65,8 +65,9 @@ set hidden
 
 let mapleader= " "
 
-" :q
+" Close active window and close preview window
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>p :pclose<CR>
 
 " Save all
 nnoremap <Leader>s :wall<cr>
@@ -113,18 +114,18 @@ set grepprg=grep\ -n\ -r\ --color\ --include='*.*'\ $*
 " Enable searching in sub-directories for files
 set path+=**
 
-let g:clipboard = {
-      \   'name': 'myClipboard',
-      \   'copy': {
-      \      '+': 'clip.exe',
-      \      '*': 'clip.exe',
-      \    },
-      \   'paste': {
-      \      '+': "powershell.exe -command Get-Clipboard",
-      \      '*': "powershell.exe -command Get-Clipboard",
-      \   },
-      \   'cache_enabled': 1,
-      \ }
+" let g:clipboard = {
+      " \   'name': 'myClipboard',
+      " \   'copy': {
+      " \      '+': 'clip.exe',
+      " \      '*': 'clip.exe',
+      " \    },
+      " \   'paste': {
+      " \      '+': "powershell.exe -command Get-Clipboard",
+      " \      '*': "powershell.exe -command Get-Clipboard",
+      " \   },
+      " \   'cache_enabled': 1,
+      " \ }
     
 
 " Relative number
@@ -186,9 +187,11 @@ augroup END
 
 " Deoplete settings
 let g:deoplete#enable_at_startup = 1
+" call deoplete#enable_logging("DEBUG", "/tmp/deoplete")
 call deoplete#custom#option('sources', {
-\ 'cs': ['omnisharp'],
+\ 'cs': ['omnisharp', 'around'],
 \})
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " OmniSharp setting are in a separate file, so source here is wanted
 source ~/.config/nvim/OmniSharp.vim

@@ -15,6 +15,11 @@ set previewheight=5
 let g:OmniSharp_highlighting = 0
 let g:OmniSharp_start_server = 0
 
+let g:OmniSharp_popup_position = 'peek'
+let g:OmniSharp_popup_options = {
+    \ 'winhl': 'Normal:NormalFloat'
+    \}
+
 augroup omnisharp_commands
   autocmd!
 
