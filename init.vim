@@ -4,6 +4,7 @@
 
 " Areas to work on my Vim-fu
 " Folds
+" termguicolors
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -14,15 +15,14 @@ Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
-Plug 'chriskempson/base16-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'drewtempelmeyer/palenight.vim'
 
 
 " plugins that I have tried, but don't use anymore.
 " 'moll/vim-bbye'
 " 'tckmn/vim-minisnip'
 " 'flazz/vim-colorschemes'
-" 'drewtempelmeyer/palenight.vim'
 " 'felixhummel/setcolors.vim'
 " 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -133,13 +133,10 @@ set number
 set relativenumber
 
 " Colorscheme
+" set termguicolors
 set background=dark
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+colorscheme palenight
 hi Normal ctermbg=NONE
-call Base16hi("Comment", "", "", g:base16_cterm0B, "", "bold,italic", "")
 
 function! s:base16_customize() abort
         call Base16hi("Comment", "", "", g:base16_cterm02, "", "bold,italic", "")
