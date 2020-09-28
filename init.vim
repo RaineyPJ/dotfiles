@@ -4,7 +4,6 @@
 
 " Areas to work on my Vim-fu
 " Folds
-" termguicolors
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -16,7 +15,7 @@ Plug 'milkypostman/vim-togglelist'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'RaineyPJ/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -37,6 +36,7 @@ Plug 'junegunn/fzf.vim'
 " 'dkprice/vim-easygrep' 
 " scalpel
 " fugitive
+" copy / paste stuff
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -135,10 +135,11 @@ set relativenumber
 
 " Colorscheme
 set termguicolors
-set background=dark
-colorscheme palenight
-hi Normal ctermbg=NONE
-hi Normal guibg=NONE
+set background=light
+let g:gruvbox_italic=1
+colorscheme gruvbox
+" set comment to the fg1 colour. I find the default grey too faint
+hi Comment guifg='#3c3836'
 
 function! SynGroup()                                                            
     let l:s = synID(line('.'), col('.'), 1)                                       
