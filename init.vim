@@ -17,6 +17,8 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 
 " plugins that I have tried, but don't use anymore.
@@ -28,7 +30,6 @@ Plug 'drewtempelmeyer/palenight.vim'
 
 " plugins that I would like to try one day.
 " coc
-" FZF
 " NerdTree
 " vim-vinegar
 " UltiSnip
@@ -133,20 +134,11 @@ set number
 set relativenumber
 
 " Colorscheme
-" set termguicolors
+set termguicolors
 set background=dark
 colorscheme palenight
 hi Normal ctermbg=NONE
-
-function! s:base16_customize() abort
-        call Base16hi("Comment", "", "", g:base16_cterm02, "", "bold,italic", "")
-endfunction
-
-augroup on_change_colorschema
-        autocmd!
-        " autocmd ColorScheme * hi Normal ctermbg=NONE
-        " autocmd ColorScheme * call s:base16_customize()
-augroup END
+hi Normal guibg=NONE
 
 function! SynGroup()                                                            
     let l:s = synID(line('.'), col('.'), 1)                                       
@@ -189,7 +181,14 @@ call deoplete#custom#option('sources', {
 \ 'cs': ['omnisharp', 'around'],
 \})
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><C-n> pumvisible() ? "\<C-n>" :
+        \ deoplete#manual_complete()
 
-" OmniSharp setting are in a separate file, so source here is wanted
+" OmniSharp setting are in a separate file, so source here if wanted
 source ~/.config/nvim/OmniSharp.vim
 " source ~/.config/nvim/cocInit.vim
+
+" FZF mappings
+nnoremap <C-F> :Files<CR>
+nnoremap <C-G> :GFiles<CR>
+nnoremap <C-B> :Buffers<CR>

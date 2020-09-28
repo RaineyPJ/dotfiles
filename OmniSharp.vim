@@ -12,7 +12,6 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 set completeopt=longest,menuone,preview
 " Set desired preview window height for viewing documentation.
 set previewheight=5
-let g:OmniSharp_highlighting = 0
 let g:OmniSharp_start_server = 0
 
 let g:OmniSharp_popup_position = 'peek'
@@ -59,3 +58,12 @@ augroup omnisharp_commands
   autocmd FileType cs nmap <silent> <buffer> <Leader>st <Plug>(omnisharp_start_server)
   autocmd FileType cs nmap <silent> <buffer> <Leader>sp <Plug>(omnisharp_stop_server)
 augroup END
+
+
+let g:OmniSharp_highlighting = 2
+let g:OmniSharp_highlight_groups = {
+                        \ 'NamespaceName': 'Statement',
+                        \ 'ClassName': 'Statement',
+                        \ 'Keyword': 'Keyword',
+                        \ 'XmlDocCommentText': 'Comment'
+                        \}
