@@ -18,6 +18,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'RaineyPJ/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'yuttie/comfortable-motion.vim'
 
 
 " plugins that I have tried, but don't use anymore.
@@ -100,6 +101,7 @@ noremap <silent> <C-Down> :resize -3<CR>
 nnoremap S diw"0P
 
 set scrolloff=3
+set foldmethod=indent
 
 set incsearch
 " set ignorecase
@@ -140,6 +142,12 @@ let g:gruvbox_italic=1
 colorscheme gruvbox
 " set comment to the fg1 colour. I find the default grey too faint
 hi Comment guifg='#3c3836'
+
+" I was fiddling with these settings to try a fix an issue of a white
+" cursor in a light background. In the end this was fixed by changing the
+" Windows Terminal color scheme
+" hi Cursor cterm=NONE guibg='#3c3836'
+" set gcr=n-v-c-sm:block-Cursor,i-ci-ve:ver25,r-cr-o:hor20
 
 function! SynGroup()                                                            
     let l:s = synID(line('.'), col('.'), 1)                                       

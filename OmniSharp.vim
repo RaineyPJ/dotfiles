@@ -2,7 +2,7 @@
 
 " ALE mappings
 nmap <silent> <leader>j <Plug>(ale_next)
-nmap <silent> <leader>k <Plug>(ale_previous))
+nmap <silent> <leader>k <Plug>(ale_previous)
 " Tell ALE to use OmniSharp for linting C# files, and no other linters.
 let g:ale_linters = { 'cs': ['OmniSharp'] }
 
@@ -62,8 +62,68 @@ augroup END
 
 let g:OmniSharp_highlighting = 2
 let g:OmniSharp_highlight_groups = {
-                        \ 'NamespaceName': 'Statement',
-                        \ 'ClassName': 'Statement',
-                        \ 'Keyword': 'Keyword',
-                        \ 'XmlDocCommentText': 'Comment'
-                        \}
+                        \ 'Comment':         'Comment',
+                        \ 'Keyword':         'GruvboxRed',
+                        \ 'ControlKeyword':  'GruvboxRed',
+                        \ 'Operator':        'Normal',
+                        \ 'Identifier':      'GruvboxBlue',
+                        \ 'StaticSymbol':    'GruvboxBlue',
+                        \ 'ClassName':       'GruvboxAqua',
+                        \ 'DelegateName':    'GruvboxAqua',
+                        \ 'EnumName':        'GruvboxAqua',
+                        \ 'InterfaceName':   'GruvboxAqua',
+                        \ 'StructName':      'GruvboxAqua',
+                        \ 'TypeParameterName':       'GruvboxAqua',
+                        \ 'FieldName':       'GruvboxBlue',
+                        \ 'EnumMemberName':  'GruvboxBlue',
+                        \ 'ConstantName':    'GruvboxBlue',
+                        \ 'LocalName':       'GruvboxBlue',
+                        \ 'ParameterName':   'GruvboxBlue',
+                        \ 'MethodName':      'GruvboxOrange',
+                        \ 'ExtensionMethodName':     'GruvboxOrange',
+                        \ 'PropertyName':    'GruvboxBlue',
+                        \ 'EventName':       'GruvboxBlue',
+                        \ 'NamespaceName':   'GruvboxAqua',
+                        \ 'LabelName':       'GruvboxOrange'}
+"                        \ 'ExcludedCode':    ,
+"                        \ 'NumericLiteral':  ,
+"                        \ 'OperatorOverloaded':      ,
+"                        \ 'PreprocessorKeyword':     ,
+"                        \ 'StringLiteral':   ,
+"                        \ 'WhiteSpace':      ,
+"                        \ 'Text':    ,
+"                        \ 'PreprocessorText':        ,
+"                        \ 'Punctuation':     ,
+"                        \ 'VerbatimStringLiteral':   ,
+"                        \ 'StringEscapeCharacter':   ,
+"                        \ 'ModuleName':      ,
+"                        \ 'XmlDocCommentAttributeName':      ,
+"                        \ 'XmlDocCommentAttributeQuotes':    ,
+"                        \ 'XmlDocCommentAttributeValue':     ,
+"                        \ 'XmlDocCommentCDataSection':       ,
+"                        \ 'XmlDocCommentComment':    ,
+"                        \ 'XmlDocCommentDelimiter':  ,
+"                        \ 'XmlDocCommentEntityReference':    ,
+"                        \ 'XmlDocCommentName':       ,
+"                        \ 'XmlDocCommentProcessingInstruction':      ,
+"                        \ 'XmlDocCommentText':       ,
+"                        \ 'XmlLiteralAttributeName': ,
+"                        \ 'XmlLiteralAttributeQuotes':       ,
+"                        \ 'XmlLiteralAttributeValue':        ,
+"                        \ 'XmlLiteralCDataSection':  ,
+"                        \ 'XmlLiteralComment':       ,
+"                        \ 'XmlLiteralDelimiter':     ,
+"                        \ 'XmlLiteralEmbeddedExpression':    ,
+"                        \ 'XmlLiteralEntityReference':       ,
+"                        \ 'XmlLiteralName':  ,
+"                        \ 'XmlLiteralProcessingInstruction': ,
+"                        \ 'XmlLiteralText':  ,
+"                        \ 'RegexComment':    ,
+"                        \ 'RegexCharacterClass':     ,
+"                        \ 'RegexAnchor':     ,
+"                        \ 'RegexQuantifier': ,
+"                        \ 'RegexGrouping':   ,
+"                        \ 'RegexAlternation':        ,
+"                        \ 'RegexText':       ,
+"                        \ 'RegexSelfEscapedCharacter':       ,
+"                        \ 'RegexOtherEscape':,
