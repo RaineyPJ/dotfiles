@@ -11,11 +11,12 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " https://github.com/neovim/neovim/issues/10996
 set completeopt=longest,menuone,preview
 " Set desired preview window height for viewing documentation.
-set previewheight=5
+set previewheight=20
 let g:OmniSharp_start_server = 0
 
 let g:OmniSharp_popup_position = 'peek'
 let g:OmniSharp_popup_options = {
+    \ 'wrap': v:true,
     \ 'winhl': 'Normal:NormalFloat'
     \}
 

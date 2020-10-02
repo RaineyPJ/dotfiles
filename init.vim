@@ -100,12 +100,21 @@ noremap <silent> <C-Down> :resize -3<CR>
 " Add a Stamp comand that pastes over the top of the current word
 nnoremap S diw"0P
 
+" Quick way to toggle upper-case on one character
+nnoremap <Leader>u g~l
+
 set scrolloff=3
 set foldmethod=indent
+set foldlevel=2
 
+" Searching settings
 set incsearch
 " set ignorecase
 " set smartcase
+
+" # normally does a * but searches backwards. I don't really see the use of
+" that. Instead, it is useful to highligh the matches without jumping forwards
+nnoremap # *N
 nnoremap <Leader>/ :nohlsearch<CR>
 
 syntax enable
@@ -181,6 +190,8 @@ augroup mycs
     autocmd FileType cs setlocal grepprg=grep\ -n\ -r\ --color\ --include='*.cs'\ $*
     autocmd FileType cs set errorformat=%f(%l\\,%c)%m
     autocmd FileType cs set makeprg=dotnet\ build\ /p:GenerateFullPaths=true
+    autocmd FileType cs nnoremap <Leader>x O/// <summary><Esc>yypwa/<Esc>
+    autocmd FileType cs nnoremap <Leader>; A;<Esc>
 augroup END
 
 " Deoplete settings
