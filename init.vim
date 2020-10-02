@@ -163,6 +163,18 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
+" FZF mappings
+nnoremap <C-F> :Files<CR>
+nnoremap <C-G> :GFiles<CR>
+nnoremap <C-B> :Buffers<CR>
+
+" comfortable motion
+let g:comfortable_motion_no_default_key_mappings = 1
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+
 " NerdTree settings
 " let NERDTreeIgnore = ['^bin$','^obj$']
 
@@ -208,7 +220,3 @@ inoremap <expr><C-n> pumvisible() ? "\<C-n>" :
 source ~/.config/nvim/OmniSharp.vim
 " source ~/.config/nvim/cocInit.vim
 
-" FZF mappings
-nnoremap <C-F> :Files<CR>
-nnoremap <C-G> :GFiles<CR>
-nnoremap <C-B> :Buffers<CR>
