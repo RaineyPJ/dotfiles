@@ -12,7 +12,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
-Plug 'OmniSharp/omnisharp-vim'
+if exists('g:enableOmniSharp')
+    Plug 'OmniSharp/omnisharp-vim'
+endif
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'RaineyPJ/gruvbox'
@@ -217,6 +219,8 @@ inoremap <expr><C-n> pumvisible() ? "\<C-n>" :
         \ deoplete#manual_complete()
 
 " OmniSharp setting are in a separate file, so source here if wanted
-source ~/.config/nvim/OmniSharp.vim
+if exists('g:enableOmniSharp')
+        source ~/.config/nvim/OmniSharp.vim
+endif
 " source ~/.config/nvim/cocInit.vim
 
