@@ -204,7 +204,8 @@ augroup mycs
     autocmd FileType cs setlocal grepprg=grep\ -n\ -r\ --color\ --include='*.cs'\ $*
     autocmd FileType cs set errorformat=%f(%l\\,%c)%m
     autocmd FileType cs set makeprg=dotnet\ build\ /p:GenerateFullPaths=true
-    autocmd FileType cs nnoremap <Leader>x O/// <summary><Esc>yypwa/<Esc>
+    autocmd FileType cs nnoremap <Leader>x O/// <summary><Esc>o</summary><Esc>
+    autocmd Filetype cs nnoremap <Leader>gs A { get; set; }<Esc>
     autocmd FileType cs nnoremap <Leader>; A;<Esc>
 augroup END
 
