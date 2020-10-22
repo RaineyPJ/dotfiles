@@ -28,6 +28,8 @@ alias grepcs="grep --color -r --include='*.cs' $argv"
 alias ll="ls -l -h -A $argv"
 alias ls="ls -A"
 
+set PATH "$HOME/.dotnet/tools:$PATH"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 eval ~/miniconda3/bin/conda "shell.fish" "hook" $argv | source
