@@ -11,6 +11,8 @@ call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
 Plug 'milkypostman/vim-togglelist'
 if exists('g:enableOmniSharp')
     Plug 'OmniSharp/omnisharp-vim'
@@ -31,14 +33,13 @@ Plug 'yuttie/comfortable-motion.vim'
 " 'neoclide/coc.nvim', {'branch': 'release'}
 
 " plugins that I would like to try one day.
-" coc
-" NerdTree
+" will133/vim-dirdiff
 " vim-vinegar
 " UltiSnip
 " surround (tpope)
 " 'dkprice/vim-easygrep' 
 " scalpel
-" fugitive
+" NerdTree
 " copy / paste stuff
 
 " List ends here. Plugins become visible to Vim after this call.
