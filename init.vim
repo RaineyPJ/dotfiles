@@ -23,6 +23,7 @@ Plug 'RaineyPJ/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'dbakker/vim-paragraph-motion'
 
 
 " plugins that I have tried, but don't use anymore.
@@ -34,9 +35,10 @@ Plug 'yuttie/comfortable-motion.vim'
 
 " plugins that I would like to try one day.
 " will133/vim-dirdiff
-" vim-vinegar
+" junegunn/vim-easy-align
 " UltiSnip
 " surround (tpope)
+" something to work with cammel case
 " 'dkprice/vim-easygrep' 
 " scalpel
 " NerdTree
@@ -121,6 +123,10 @@ nnoremap # *N
 nnoremap <Leader>/ :nohlsearch<CR>
 
 syntax enable
+
+" spell check
+set spell spelllang=en_us
+set spellfile=~/.config/nvim/spell/en.utf-8.add
 
 set expandtab
 
