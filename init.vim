@@ -24,6 +24,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'dbakker/vim-paragraph-motion'
+Plug 'junegunn/vim-easy-align'
 
 
 " plugins that I have tried, but don't use anymore.
@@ -35,7 +36,6 @@ Plug 'dbakker/vim-paragraph-motion'
 
 " plugins that I would like to try one day.
 " will133/vim-dirdiff
-" junegunn/vim-easy-align
 " UltiSnip
 " surround (tpope)
 " something to work with cammel case
@@ -225,6 +225,12 @@ call deoplete#custom#option('sources', {
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><C-n> pumvisible() ? "\<C-n>" :
         \ deoplete#manual_complete()
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " OmniSharp setting are in a separate file, so source here if wanted
 if exists('g:enableOmniSharp')
