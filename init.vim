@@ -87,6 +87,7 @@ set mouse=nv
 
 " Mappings of core Vim commands that have bad defaults
 inoremap jk <ESC>
+inoremap kj <ESC>
 nnoremap <F5> :wall<CR>:make<CR>
 
 " Remap splits navigation to just CTRL + hjkl
@@ -102,7 +103,7 @@ noremap <silent> <C-Right> :vertical resize +3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
-" Add a Stamp comand that pastes over the top of the current word
+" Add a Stamp command that pastes over the top of the current word
 nnoremap S diw"0P
 
 " Quick way to toggle upper-case on one character
