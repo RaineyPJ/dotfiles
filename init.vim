@@ -215,6 +215,7 @@ augroup mycs
     autocmd FileType cs nnoremap <Leader>x O/// <summary><Esc>o</summary><Esc>
     autocmd Filetype cs nnoremap <Leader>gs A { get; set; }<Esc>
     autocmd FileType cs nnoremap <Leader>; A;<Esc>
+    autocmd FileType cs nnoremap L lbiList<<Esc>ea><Esc>
 augroup END
 
 " Deoplete settings
