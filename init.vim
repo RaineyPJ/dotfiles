@@ -62,9 +62,6 @@ set backspace=indent,eol,start
 set wildmenu
 set nowrap
 
-" Allow backspacing over everything in insert mode.
-set backspace=indent,eol,start
-
 " Allow a buffer to be hidden, i.e. contain unsaved changes.
 " This should be unecessary with autowrite, but netrw looks for hidden before
 " splitting when :E is called.
@@ -79,7 +76,7 @@ nnoremap <Leader>p :pclose<CR>
 " Save all
 nnoremap <Leader>s :wall<cr>
 
-" User visual mode selection to search
+" Use visual mode selection to search
 vmap <Leader>/ y/<C-R>"<CR>
 
 " Enable the mouse in normal and visual modes
@@ -87,7 +84,6 @@ set mouse=nv
 
 " Mappings of core Vim commands that have bad defaults
 inoremap jk <ESC>
-inoremap kj <ESC>
 nnoremap <F5> :wall<CR>:make<CR>
 
 " Remap splits navigation to just CTRL + hjkl
@@ -119,7 +115,7 @@ set incsearch
 " set smartcase
 
 " # normally does a * but searches backwards. I don't really see the use of
-" that. Instead, it is useful to highligh the matches without jumping forwards
+" that. Instead, it is useful to highlight the matches without jumping forwards
 nnoremap # *N
 nnoremap <Leader>/ :nohlsearch<CR>
 
