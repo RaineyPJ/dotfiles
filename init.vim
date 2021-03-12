@@ -153,7 +153,6 @@ set relativenumber
 " Colorscheme
 set termguicolors
 set background=light
-let g:gruvbox_italic=1
 colorscheme gruvbox
 " set comment to the fg1 colour. I find the default grey too faint
 hi Comment guifg='#3c3836'
