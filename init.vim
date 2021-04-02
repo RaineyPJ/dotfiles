@@ -72,6 +72,7 @@ let mapleader= " "
 " Close active window and close preview window
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>p :pclose<CR>
+nnoremap <Leader>o :only<CR>
 
 " Save all
 nnoremap <Leader>s :wall<cr>

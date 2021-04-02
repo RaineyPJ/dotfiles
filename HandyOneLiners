@@ -1,0 +1,2 @@
+Check all C# tests to makes sure they have the Test or TestCase attribute
+git grep -B 3 "public void" '*Tests/*.cs' | sed '{N;N;N;N;/\[Test\]\|TestCase/ d}' | less   
