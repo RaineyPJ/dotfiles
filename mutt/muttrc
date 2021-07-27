@@ -3,3 +3,6 @@ source /usr/local/share/mutt-wizard/mutt-wizard.muttrc
 source /home/p/.config/mutt/accounts/1-patrick.rainey@mailbox.org.muttrc
 macro index,pager i1 '<sync-mailbox><enter-command>source /home/p/.config/mutt/accounts/1-patrick.rainey@mailbox.org.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to patrick.rainey@mailbox.org"
 source /home/p/.config/mutt/color.muttrc
+bind pager D delete-message
+bind pager J next-undeleted
+bind pager K previous-undeleted

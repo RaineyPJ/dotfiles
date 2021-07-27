@@ -50,7 +50,7 @@ color normal black color230
 color header blue color230 ".*"
 color header brightmagenta color230 "^(From)"
 color header brightcyan color230 "^(Subject)"
-color header brightwhite color230 "^(CC|BCC)"
+color header brightmagenta color230 "^(CC|BCC)"
 color body brightred color230 "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
 color body brightblue color230 "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
 color body green color230 "\`[^\`]*\`" # Green text between ` and `

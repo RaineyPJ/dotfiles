@@ -25,6 +25,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'junegunn/vim-easy-align'
+Plug 'will133/vim-dirdiff'
 
 
 " plugins that I have tried, but don't use anymore.
