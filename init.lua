@@ -145,7 +145,7 @@ vim.opt.grepprg='grep -n -r --color --include=\'*.*\' $*'
 vim.opt.path = vim.opt.path + '**'
 
 -- Use the .vim directory under home to look for any custom compile plugins
-vim.opt.runtimepath = vim.opt.runtimepath + '~\.vim'
+vim.opt.runtimepath = vim.opt.runtimepath + '~/.vim'
 
 -- Relative number
 vim.opt.number=true

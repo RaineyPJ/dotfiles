@@ -1,10 +1,3 @@
-" I can't remember why I put these two lines here. Omnisharp-vim maybe?
-"let g:python3_host_prog='C:/Users/patra/Miniconda3/envs/neovim3/python.exe'
-"let g:python_host_prog='C:/Users/patra/Miniconda3/envs/neovim/python.exe'
-
-" Areas to work on my Vim-fu
-" Folds
-
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
@@ -20,12 +13,14 @@ endif
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'RaineyPJ/gruvbox'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'junegunn/vim-easy-align'
 Plug 'will133/vim-dirdiff'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 
 " plugins that I have tried, but don't use anymore.
@@ -68,6 +63,13 @@ set nowrap
 " splitting when :E is called.
 set hidden
 
+" Enable the mouse in normal and visual modes
+set mouse=nv
+
+" ------------ --
+" Key bindings --
+" ------------ --
+
 let mapleader= " "
 
 " Close active window and close preview window
@@ -80,9 +82,6 @@ nnoremap <Leader>s :wall<cr>
 
 " Use visual mode selection to search
 vmap <Leader>/ y/<C-R>"<CR>
-
-" Enable the mouse in normal and visual modes
-set mouse=nv
 
 " Mappings of core Vim commands that have bad defaults
 inoremap jk <ESC>
@@ -106,6 +105,18 @@ nnoremap S diw"0P
 
 " Quick way to toggle upper-case on one character
 nnoremap <Leader>u g~l
+
+" Start a powershell terminal
+nnoremap <Leader>t :e term://C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe<CR>
+
+" Send code to ipython terminal
+" Warning this is fragile!!
+" It relies on the terminal being in a window to the right of the current
+" buffer
+" I tried some of the more robust ways of doing this but they didn't play so
+" well with IPython in NVim terminal on Windows. There seems to be a bit of a
+" bug there.
+vnoremap <Leader>r "+y<C-W><C-L>apaste
 
 set scrolloff=3
 set foldmethod=indent
@@ -134,20 +145,6 @@ set grepprg=grep\ -n\ -r\ --color\ --include='*.*'\ $*
 " Enable searching in sub-directories for files
 set path+=**
 
-" let g:clipboard = {
-      " \   'name': 'myClipboard',
-      " \   'copy': {
-      " \      '+': 'clip.exe',
-      " \      '*': 'clip.exe',
-      " \    },
-      " \   'paste': {
-      " \      '+': "powershell.exe -command Get-Clipboard",
-      " \      '*': "powershell.exe -command Get-Clipboard",
-      " \   },
-      " \   'cache_enabled': 1,
-      " \ }
-    
-
 " Relative number
 set number
 set relativenumber
@@ -170,10 +167,38 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
-" FZF mappings
-nnoremap <C-F> :Files<CR>
-nnoremap <C-G> :GFiles<CR>
-nnoremap <C-B> :Buffers<CR>
+" Telescope mappings
+lua << EOF
+require("telescope").setup{
+        defaults = {
+                prompt_prefix = ">> ",
+                mappings = {
+                        i = { ["<esc>"] = require('telescope.actions').close }
+                }
+        }
+}
+EOF
+nnoremap <C-F> :Telescope find_files<CR>
+nnoremap <C-G> :Telescope git_files<CR>
+nnoremap <C-B> :Telescope buffers<CR>
+
+" completion mappings
+lua << EOF
+vim.opt.completeopt='menu,menuone,noselect'
+local cmp = require'cmp'
+cmp.setup({
+        sources = {
+                {name = 'buffer'},
+        },
+        mapping = {
+                ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<C-e>'] = cmp.mapping.close(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        },
+})
+EOF
 
 " comfortable motion
 let g:comfortable_motion_no_default_key_mappings = 1
@@ -181,14 +206,6 @@ let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
 nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
-
-" NerdTree settings
-" let NERDTreeIgnore = ['^bin$','^obj$']
-
-" bbye mapping
-" I haven't found myself using this, have have added vim-togglelist which
-" clashes with this mapping
-" nnoremap <Leader>q :Bdelete<CR>
 
 " targets settings
 " Prefer multiline targets around cursor over distant targets within cursor
@@ -214,16 +231,6 @@ augroup mycs
     autocmd FileType cs nnoremap <Leader>; A;<Esc>
     autocmd FileType cs nnoremap L lbiList<<Esc>ea><Esc>
 augroup END
-
-" Deoplete settings
-let g:deoplete#enable_at_startup = 1
-" call deoplete#enable_logging("DEBUG", "/tmp/deoplete")
-call deoplete#custom#option('sources', {
-\ 'cs': ['omnisharp', 'around'],
-\})
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><C-n> pumvisible() ? "\<C-n>" :
-        \ deoplete#manual_complete()
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
