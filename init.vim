@@ -189,9 +189,17 @@ nnoremap <C-B> :Telescope buffers<CR>
 lua << EOF
 vim.opt.completeopt='menu,menuone,noselect'
 local cmp = require'cmp'
+local types = require'cmp.types'
 cmp.setup({
         sources = {
                 {name = 'buffer'},
+        },
+        completion = {
+                -- TextChanged is the default here, so this part of the config could be removed
+                -- but it's useful to show how this works.
+                -- autocomplete is set to false in the auto-commands for some file-types
+                -- autocomplete = false,
+                autocomplete = { types.cmp.TriggerEvent.TextChanged },
         },
         mapping = {
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -239,6 +247,7 @@ augroup vimrc
     autocmd FileType markdown set wrap linebreak
     autocmd FileType markdown noremap j gj
     autocmd FileType markdown noremap k gk
+    autocmd FileType markdown lua require'cmp'.setup({completion = {autocomplete = false}})
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
