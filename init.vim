@@ -78,7 +78,8 @@ nnoremap <Leader>p :pclose<CR>
 nnoremap <Leader>o :only<CR>
 
 " Save all
-nnoremap <Leader>s :wall<cr>
+nnoremap <C-a> :wall<cr>
+nnoremap <C-s> :w<cr>
 
 " Use visual mode selection to search
 vmap <Leader>/ y/<C-R>"<CR>
@@ -92,7 +93,9 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
-nnoremap <C-s> <C-w><C-v>
+
+" make creating a new vertical split supper easy
+nnoremap <leader>s <C-w><C-v>
 
 " Make adjusing split sizes a bit more friendly
 noremap <silent> <C-Left> :vertical resize -3<CR>
@@ -217,7 +220,7 @@ let g:toggle_list_no_mappings=1
 nmap <silent> <leader>l :call ToggleLocationList()<CR>
 nmap <silent> <leader>c :call ToggleQuickfixList()<CR>
 
-augroup mycs
+augroup vimrc
     au!
     autocmd FileType cs set suffixesadd=.cs
     autocmd FileType cs set isfname=@,48-57,-,_
@@ -230,6 +233,12 @@ augroup mycs
     autocmd Filetype cs nnoremap <Leader>gs A { get; set; }<Esc>
     autocmd FileType cs nnoremap <Leader>; A;<Esc>
     autocmd FileType cs nnoremap L lbiList<<Esc>ea><Esc>
+
+    autocmd FileType py compiler pylint
+
+    autocmd FileType markdown set wrap linebreak
+    autocmd FileType markdown noremap j gj
+    autocmd FileType markdown noremap k gk
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
