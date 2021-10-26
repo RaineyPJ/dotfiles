@@ -244,9 +244,16 @@ augroup vimrc
 
     autocmd FileType py compiler pylint
 
-    autocmd FileType markdown set wrap linebreak
+    " These are two alternative ways to handle wrapping text.
+    " The first just wraps the lines visually, the second inserts real line breaks
+    "autocmd FileType markdown set wrap linebreak
+    autocmd FileType markdown set textwidth=110
+
     autocmd FileType markdown noremap j gj
     autocmd FileType markdown noremap k gk
+    " map cs to change a sentence ending with two line breaks or a full stop followed by a non-word character
+    autocmd FileType markdown nnoremap cs d/\n\n\\|\.\W<CR>:nohlsearch<CR>i
+    autocmd FileType markdown set spelllang=en_gb
     autocmd FileType markdown lua require'cmp'.setup({completion = {autocomplete = false}})
 augroup END
 
