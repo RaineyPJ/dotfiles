@@ -1,0 +1,69 @@
+XTerm.termName: xterm-256color
+
+
+! These can be used to find out what X resources have made their way into xterm
+!XTerm.ReportXRes: true
+!UXTerm.ReportXRes: true
+XTerm.vt100.faceName: mono:size=12:antialias=true
+UXTerm.vt100.faceName: mono:size=12:antialias=true
+
+! Gruvbox colorscheme
+! hard contrast: *background: #1d2021
+XTerm.VT100*background: #282828
+! soft contrast: *background: #32302f
+XTerm.VT100*foreground: #ebdbb2
+! Black + DarkGrey
+XTerm.VT100*color0:  #282828
+XTerm.VT100*color8:  #928374
+! DarkRed + Red
+XTerm.VT100*color1:  #cc241d
+XTerm.VT100*color9:  #fb4934
+! DarkGreen + Green
+XTerm.VT100*color2:  #98971a
+XTerm.VT100*color10: #b8bb26
+! DarkYellow + Yellow
+XTerm.VT100*color3:  #d79921
+XTerm.VT100*color11: #fabd2f
+! DarkBlue + Blue
+XTerm.VT100*color4:  #458588
+XTerm.VT100*color12: #83a598
+! DarkMagenta + Magenta
+XTerm.VT100*color5:  #b16286
+XTerm.VT100*color13: #d3869b
+! DarkCyan + Cyan
+XTerm.VT100*color6:  #689d6a
+XTerm.VT100*color14: #8ec07c
+! LightGrey + White
+XTerm.VT100*color7:  #a89984
+XTerm.VT100*color15: #ebdbb2
+
+
+! Gruvbox colorscheme
+! hard contrast: *background: #1d2021
+UXTerm.VT100*background: #282828
+! soft contrast: *background: #32302f
+UXTerm.VT100*foreground: #ebdbb2
+! Black + DarkGrey
+UXTerm.VT100*color0:  #282828
+UXTerm.VT100*color8:  #928374
+! DarkRed + Red
+UXTerm.VT100*color1:  #cc241d
+UXTerm.VT100*color9:  #fb4934
+! DarkGreen + Green
+UXTerm.VT100*color2:  #98971a
+UXTerm.VT100*color10: #b8bb26
+! DarkYellow + Yellow
+UXTerm.VT100*color3:  #d79921
+UXTerm.VT100*color11: #fabd2f
+! DarkBlue + Blue
+UXTerm.VT100*color4:  #458588
+UXTerm.VT100*color12: #83a598
+! DarkMagenta + Magenta
+UXTerm.VT100*color5:  #b16286
+UXTerm.VT100*color13: #d3869b
+! DarkCyan + Cyan
+UXTerm.VT100*color6:  #689d6a
+UXTerm.VT100*color14: #8ec07c
+! LightGrey + White
+UXTerm.VT100*color7:  #a89984
+UXTerm.VT100*color15: #ebdbb2

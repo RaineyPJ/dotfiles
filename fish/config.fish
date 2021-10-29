@@ -1,5 +1,8 @@
 fish_vi_key_bindings
 
+set --export PATH "/usr/sbin:$PATH"
+set --export PATH "$HOME/.cargo/bin:$PATH"
+
 # Git
 alias g="git"
 alias gs="git status"
@@ -23,8 +26,8 @@ alias grepcs="grep --color -r --include='*.cs' $argv"
 alias ll="ls -l -h -A --color=auto $argv"
 alias ls="ls -A --color=auto"
 
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# eval ~/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+eval /opt/conda/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
+
