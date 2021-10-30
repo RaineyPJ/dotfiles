@@ -10,8 +10,8 @@ Plug 'milkypostman/vim-togglelist'
 if exists('g:enableOmniSharp')
     Plug 'OmniSharp/omnisharp-vim'
 endif
-Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'w0rp/ale'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'RaineyPJ/gruvbox'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'dbakker/vim-paragraph-motion'
