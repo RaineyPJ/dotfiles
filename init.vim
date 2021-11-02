@@ -162,8 +162,8 @@ hi Comment guifg='#3c3836'
 " I was fiddling with these settings to try a fix an issue of a white
 " cursor in a light background. In the end this was fixed by changing the
 " Windows Terminal color scheme
-" hi Cursor cterm=NONE guibg='#3c3836'
-" set gcr=n-v-c-sm:block-Cursor,i-ci-ve:ver25,r-cr-o:hor20
+hi Cursor gui=NONE guibg='#3c3836'
+set gcr=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 
 function! SynGroup()                                                            
     let l:s = synID(line('.'), col('.'), 1)                                       
