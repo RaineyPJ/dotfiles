@@ -1,7 +1,6 @@
 fish_vi_key_bindings
 
 set --export PATH "/usr/sbin:$PATH"
-set --export PATH "$HOME/.cargo/bin:$PATH"
 
 # Git
 alias g="git"
