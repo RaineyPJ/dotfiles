@@ -1,11 +1,25 @@
+! This sets the TERM variable, not sure why it is useful
+! Just following the recommendation from the ArchWiki.
 XTerm.termName: xterm-256color
-
+UXTerm.termName: xterm-256color
 
 ! These can be used to find out what X resources have made their way into xterm
 !XTerm.ReportXRes: true
 !UXTerm.ReportXRes: true
+
+! Set the font.
+! Giving a value to faceName seems to mean that XTerm defaults
+! to using it rather than the old bitmap font given in vt100.font
 XTerm.vt100.faceName: mono:size=12:antialias=true
 UXTerm.vt100.faceName: mono:size=12:antialias=true
+
+! key-mappings to adjust the font size
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font()
+UXTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font()
 
 ! Gruvbox colorscheme
 ! hard contrast: *background: #1d2021
