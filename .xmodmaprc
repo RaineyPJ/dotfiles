@@ -1,0 +1,23 @@
+! 66 is the Caps Lock key
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
+
+! 64 is the Alt_L key
+! 133 is the Super_L key
+keycode 64 = Super_L
+keycode 133 = Alt_L
+clear mod1
+clear mod4
+add mod1 = Alt_L
+add mod4 = Super_L
+
+!
+! Swap Ctrl and Caps Lock
+!
+! remove Lock = Caps_Lock
+! remove Control = Control_L
+! keysym Control_L = Caps_Lock
+! keysym Caps_Lock = Control_L
+! add Lock = Caps_Lock
+! add Control = Control_L
