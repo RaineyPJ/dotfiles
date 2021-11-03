@@ -219,7 +219,7 @@ nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
 
 " targets settings
-" Prefer multiline targets around cursor over distant targets within cursor
+" Prefer multiline targets around cursor over distant targets within cursor line
 " See: https://github.com/wellle/targets.vim#gtargets_seekranges
 let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr lb ar ab lB Ar aB Ab AB rr ll rb al rB Al bb aa bB Aa BB AA'
 
@@ -255,6 +255,8 @@ augroup vimrc
     autocmd FileType markdown nnoremap cs d/\n\n\\|\.\W<CR>:nohlsearch<CR>i
     autocmd FileType markdown set spelllang=en_gb
     autocmd FileType markdown lua require'cmp'.setup({completion = {autocomplete = false}})
+    " format the current paragraph
+    autocmd FileType markdown nnoremap <leader>f magqap`a
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
