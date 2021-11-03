@@ -13,22 +13,22 @@ local theme = {}
 
 theme.font          = "sans 8"
 
-theme.bg_normal     = "#fbf1c7"
-theme.bg_focus      = "#ebdbb2"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#fbf1c7" -- light0
+theme.bg_focus      = "#ebdbb2" -- light1
+theme.bg_urgent     = "#ff0000" -- awesome red
+theme.bg_minimize   = "#444444" -- awesome dark grey
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#3c3836"
-theme.fg_focus      = "#3c3836"
-theme.fg_urgent     = "#3c3836"
-theme.fg_minimize   = "#3c3836"
+theme.fg_normal     = "#3c3836" -- dark1
+theme.fg_focus      = "#3c3836" -- dark1
+theme.fg_urgent     = "#3c3836" -- dark1
+theme.fg_minimize   = "#3c3836" -- dark1
 
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(2)
-theme.border_normal = "#928374"
-theme.border_focus  = "#cc241d"
-theme.border_marked = "#458588"
+theme.border_normal = "#928374" -- gray_244
+theme.border_focus  = "#cc241d" -- neutral_red
+theme.border_marked = "#458588" -- neutral_blue
 
 -- There are other variable sets
 -- overriding the default one when
@@ -116,6 +116,9 @@ theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+
+-- Recolor Layout icons:
+theme = theme_assets.recolor_layout(theme, theme.fg_normal)
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
