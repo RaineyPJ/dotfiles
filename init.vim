@@ -263,7 +263,7 @@ augroup vimrc
     autocmd FileType markdown,text set spelllang=en_gb
     autocmd FileType markdown,text lua require'cmp'.setup({completion = {autocomplete = false}})
     " format the current paragraph
-    autocmd FileType markdown,text nnoremap <leader>f magqap`a
+    autocmd FileType markdown,text nnoremap <leader>w magqap`a
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
