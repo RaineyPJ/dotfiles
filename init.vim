@@ -66,6 +66,9 @@ set hidden
 " Enable the mouse in normal and visual modes
 set mouse=nv
 
+" add euc-cn to fileencodings as that is used in China
+set fileencodings=ucs-bom,utf-8,euc-cn,default,latin1
+
 " ------------ --
 " Key bindings --
 " ------------ --
