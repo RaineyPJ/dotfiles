@@ -181,9 +181,16 @@ require("telescope").setup{
         }
 }
 EOF
-nnoremap <C-F> :Telescope find_files<CR>
-nnoremap <C-G> :Telescope git_files<CR>
-nnoremap <C-B> :Telescope buffers<CR>
+
+" I've used a mix of the lua api and the vim commands. The lua api is more
+" robust and flexible, but the vim commands are a bit easier on the eye
+"nnoremap <leader>ff :Telescope find_files hidden=true<CR>
+nnoremap <leader>ff :lua require("telescope.builtin").find_files{hidden=true}<CR>
+nnoremap <leader>fg :Telescope git_files<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fh :lua require("telescope.builtin").help_tags()<CR>
+nnoremap <leader>fl :lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>
+nnoremap <leader>fm :lua require("telescope.builtin").keymaps()<CR>
 
 " completion mappings
 lua << EOF
@@ -247,16 +254,16 @@ augroup vimrc
     " These are two alternative ways to handle wrapping text.
     " The first just wraps the lines visually, the second inserts real line breaks
     "autocmd FileType markdown set wrap linebreak
-    autocmd FileType markdown set textwidth=110
+    autocmd FileType markdown,text set textwidth=110
 
-    autocmd FileType markdown noremap j gj
-    autocmd FileType markdown noremap k gk
+    autocmd FileType markdown,text noremap j gj
+    autocmd FileType markdown,text noremap k gk
     " map cs to change a sentence ending with two line breaks or a full stop followed by a non-word character
-    autocmd FileType markdown nnoremap cs d/\n\n\\|\.\W<CR>:nohlsearch<CR>i
-    autocmd FileType markdown set spelllang=en_gb
-    autocmd FileType markdown lua require'cmp'.setup({completion = {autocomplete = false}})
+    autocmd FileType markdown,text nnoremap cs d/\n\n\\|\.\W<CR>:nohlsearch<CR>i
+    autocmd FileType markdown,text set spelllang=en_gb
+    autocmd FileType markdown,text lua require'cmp'.setup({completion = {autocomplete = false}})
     " format the current paragraph
-    autocmd FileType markdown nnoremap <leader>f magqap`a
+    autocmd FileType markdown,text nnoremap <leader>f magqap`a
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
