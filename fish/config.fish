@@ -1,7 +1,5 @@
 fish_vi_key_bindings
 
-set --export PATH "/usr/sbin:$PATH"
-
 # Git
 alias g="git"
 alias gs="git status"
