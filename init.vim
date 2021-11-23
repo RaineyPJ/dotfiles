@@ -10,7 +10,7 @@ Plug 'milkypostman/vim-togglelist'
 if exists('g:enableOmniSharp')
     Plug 'OmniSharp/omnisharp-vim'
 endif
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'RaineyPJ/gruvbox'
 Plug 'yuttie/comfortable-motion.vim'
@@ -34,7 +34,7 @@ Plug 'nvim-telescope/telescope.nvim'
 " will133/vim-dirdiff
 " UltiSnip
 " surround (tpope)
-" something to work with cammel case
+" something to work with camel case
 " 'dkprice/vim-easygrep' 
 " scalpel
 " NerdTree
@@ -59,7 +59,7 @@ set wildmenu
 set nowrap
 
 " Allow a buffer to be hidden, i.e. contain unsaved changes.
-" This should be unecessary with autowrite, but netrw looks for hidden before
+" This should be unnecessary with autowrite, but netrw looks for hidden before
 " splitting when :E is called.
 set hidden
 
@@ -68,6 +68,14 @@ set mouse=nv
 
 " add euc-cn to fileencodings as that is used in China
 set fileencodings=ucs-bom,utf-8,euc-cn,default,latin1
+
+if (&shell == 'cmd.exe')
+        let &shell = has('win32') ? 'powershell' : 'pwsh'
+        let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+        let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+        let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+        set shellquote= shellxquote=
+endif
 
 " ------------ --
 " Key bindings --
@@ -96,11 +104,15 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
+tnoremap <C-h> <C-\><C-N><C-w><C-h>
+tnoremap <C-j> <C-\><C-N><C-w><C-j>
+tnoremap <C-k> <C-\><C-N><C-w><C-k>
+tnoremap <C-l> <C-\><C-N><C-w><C-l>
 
 " make creating a new vertical split supper easy
 nnoremap <leader>s <C-w><C-v>
 
-" Make adjusing split sizes a bit more friendly
+" Make adjusting split sizes a bit more friendly
 noremap <silent> <C-Left> :vertical resize -3<CR>
 noremap <silent> <C-Right> :vertical resize +3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
@@ -112,8 +124,12 @@ nnoremap S diw"0P
 " Quick way to toggle upper-case on one character
 nnoremap <Leader>u g~l
 
+nnoremap <Leader>\ :s/\\/\\\\/g<CR>:nohls<CR>
+nnoremap <Leader>_ :s/_/\\_/g<CR>:nohls<CR>
+
 " Start a powershell terminal
 nnoremap <Leader>t :e term://C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe<CR>
+tnoremap jk <C-\><C-n>
 
 " Send code to ipython terminal
 " Warning this is fragile!!
@@ -130,13 +146,16 @@ set foldlevel=2
 
 " Searching settings
 set incsearch
-" set ignorecase
-" set smartcase
+set ignorecase
+set smartcase
 
 " # normally does a * but searches backwards. I don't really see the use of
 " that. Instead, it is useful to highlight the matches without jumping forwards
 nnoremap # *N
 nnoremap <Leader>/ :nohlsearch<CR>
+
+" format the current paragraph, without moving cursor to end of paragraph
+nnoremap <leader>w magqap`a
 
 syntax enable
 
@@ -265,8 +284,12 @@ augroup vimrc
     autocmd FileType markdown,text nnoremap cs d/\n\n\\|\.\W<CR>:nohlsearch<CR>i
     autocmd FileType markdown,text set spelllang=en_gb
     autocmd FileType markdown,text lua require'cmp'.setup({completion = {autocomplete = false}})
-    " format the current paragraph
-    autocmd FileType markdown,text nnoremap <leader>w magqap`a
+
+    " define motions to the next and previous sections
+    autocmd FileType markdown nnoremap ]] /^# <CR>:nohls<CR>
+    autocmd FileType markdown nnoremap [[ ?^# <CR>:nohls<CR>
+    autocmd FileType markdown nnoremap ]} /^## <CR>:nohls<CR>
+    autocmd FileType markdown nnoremap [{ ?^## <CR>:nohls<CR>
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -274,6 +297,16 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Non interactive alignment of paragraph using bars (good for Markdown tables)
+nnoremap <leader>a mavap:EasyAlign*<Bar><CR>`a
+
+" Working with maths in tables
+" These are not noremap because the i<Bar> is using targets plugin
+" Or at least that is my guess. It didn't seem to work with noremap
+"nmap <leader>e yi<Bar>f<Bar>lci<Bar><Space><C-R>=eval(@0)<CR><Space><Esc>
+" Switch to luaeval because lua can hangle things like 1E10 and math.pi
+nmap <leader>e yi<Bar>f<Bar>lci<Bar><Space><C-R>=luaeval(@0)<CR><Space><Esc>
 
 " OmniSharp setting are in a separate file, so source here if wanted
 if exists('g:enableOmniSharp')
