@@ -322,4 +322,40 @@ endif
 " source ~/.config/nvim/cocInit.vim
 
 " LSP
-lua require'lspconfig'.pylsp.setup{}
+lua << EOF
+require'lspconfig'.pylsp.setup{
+    handlers = {
+       ["textDocument/publishDiagnostics"] = vim.lsp.with(
+         vim.lsp.diagnostic.on_publish_diagnostics, {
+           underline = false,
+           virtual_text = true
+         }
+       ),
+    }
+}
+EOF
+
+nnoremap <leader>j :lua vim.lsp.diagnostic.goto_next({enable_popup=false})<CR>
+nnoremap <leader>k :lua vim.lsp.diagnostic.goto_prev({enable_popup=false})<CR>
+
+lua << EOF
+local DiagnosticsLevel = 3
+toggleDiagnostics = function ()
+        DiagnosticsLevel = DiagnosticsLevel + 1
+        if (DiagnosticsLevel == 4) then
+                DiagnosticsLevel = 1
+        end
+        vim.cmd(':hi LspDiagnosticsDefaultWarning guifg=bg')
+        vim.cmd(':hi LspDiagnosticsDefaultError guifg=bg')
+        if DiagnosticsLevel > 1 then
+                vim.cmd(':hi LspDiagnosticsDefaultError guifg=red')
+        end
+        if DiagnosticsLevel > 2 then
+                vim.cmd(':hi LspDiagnosticsDefaultWarning guifg=orange')
+        end
+        print("diagnostics display level: " .. DiagnosticsLevel)
+        -- vim.cmd('hi LspDiagnosticsDefaultError')
+end
+vim.api.nvim_set_keymap('n', '<Space>d', ':lua toggleDiagnostics()<CR>', {})
+EOF
+
