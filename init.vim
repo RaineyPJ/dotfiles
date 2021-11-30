@@ -21,6 +21,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'neovim/nvim-lspconfig'
 
 
 " plugins that I have tried, but don't use anymore.
@@ -119,7 +120,9 @@ noremap <silent> <C-Up> :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
 
 " Add a Stamp command that pastes over the top of the current word
-nnoremap S diw"0P
+" This throws away the word that is deleted as we don't want to clobber
+" the " register because we are likely to want to Stamp again.
+nnoremap S "_ciw<C-R>"<esc>
 
 " Quick way to toggle upper-case on one character
 nnoremap <Leader>u g~l
@@ -210,6 +213,8 @@ EOF
 nnoremap <leader>ff :lua require("telescope.builtin").find_files{hidden=true}<CR>
 nnoremap <leader>fg :Telescope git_files<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fr :Telescope live_grep<CR>
+nnoremap <leader>fs :Telescope grep_string<CR>
 nnoremap <leader>fh :lua require("telescope.builtin").help_tags()<CR>
 nnoremap <leader>fl :lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>
 nnoremap <leader>fm :lua require("telescope.builtin").keymaps()<CR>
@@ -290,6 +295,8 @@ augroup vimrc
     autocmd FileType markdown nnoremap [[ ?^# <CR>:nohls<CR>
     autocmd FileType markdown nnoremap ]} /^## <CR>:nohls<CR>
     autocmd FileType markdown nnoremap [{ ?^## <CR>:nohls<CR>
+
+    autocmd BufEnter *powershell* set nospell
 augroup END
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -314,3 +321,5 @@ if exists('g:enableOmniSharp')
 endif
 " source ~/.config/nvim/cocInit.vim
 
+" LSP
+lua require'lspconfig'.pylsp.setup{}
