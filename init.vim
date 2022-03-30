@@ -18,10 +18,12 @@ Plug 'dbakker/vim-paragraph-motion'
 Plug 'junegunn/vim-easy-align'
 Plug 'will133/vim-dirdiff'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 
 " plugins that I have tried, but don't use anymore.
@@ -83,6 +85,7 @@ endif
 " ------------ --
 
 let mapleader= " "
+let maplocalleader="\\"
 
 " Close active window and close preview window
 nnoremap <Leader>q :q<CR>
@@ -210,7 +213,7 @@ EOF
 " I've used a mix of the lua api and the vim commands. The lua api is more
 " robust and flexible, but the vim commands are a bit easier on the eye
 "nnoremap <leader>ff :Telescope find_files hidden=true<CR>
-nnoremap <leader>ff :lua require("telescope.builtin").find_files{hidden=true}<CR>
+nnoremap <leader>ff :lua require("telescope.builtin").find_files{hidden=true, no_ignore=true}<CR>
 nnoremap <leader>fg :Telescope git_files<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fr :Telescope live_grep<CR>
@@ -225,9 +228,13 @@ vim.opt.completeopt='menu,menuone,noselect'
 local cmp = require'cmp'
 local types = require'cmp.types'
 cmp.setup({
-        sources = {
-                {name = 'buffer'},
-        },
+        sources = cmp.config.sources({
+                        { name = 'nvim_lsp' },
+                }
+        --        {
+         --               {name = 'buffer'}
+         --           }
+                ),
         completion = {
                 -- TextChanged is the default here, so this part of the config could be removed
                 -- but it's useful to show how this works.
@@ -335,8 +342,10 @@ require'lspconfig'.pylsp.setup{
 }
 EOF
 
-nnoremap <leader>j :lua vim.lsp.diagnostic.goto_next({enable_popup=false})<CR>
-nnoremap <leader>k :lua vim.lsp.diagnostic.goto_prev({enable_popup=false})<CR>
+nnoremap <leader>j :lua vim.diagnostic.goto_next({enable_popup=false})<CR>
+nnoremap <leader>k :lua vim.diagnostic.goto_prev({enable_popup=false})<CR>
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>lh :lua vim.lsp.buf.hover()<CR>
 
 lua << EOF
 local DiagnosticsLevel = 3
@@ -345,17 +354,42 @@ toggleDiagnostics = function ()
         if (DiagnosticsLevel == 4) then
                 DiagnosticsLevel = 1
         end
-        vim.cmd(':hi LspDiagnosticsDefaultWarning guifg=bg')
-        vim.cmd(':hi LspDiagnosticsDefaultError guifg=bg')
+        vim.cmd(':hi DiagnosticWarn guifg=bg')
+        vim.cmd(':hi DiagnosticError guifg=bg')
         if DiagnosticsLevel > 1 then
-                vim.cmd(':hi LspDiagnosticsDefaultError guifg=red')
+                vim.cmd(':hi DiagnosticError guifg=red')
         end
         if DiagnosticsLevel > 2 then
-                vim.cmd(':hi LspDiagnosticsDefaultWarning guifg=orange')
+                vim.cmd(':hi DiagnosticWarn guifg=orange')
         end
         print("diagnostics display level: " .. DiagnosticsLevel)
-        -- vim.cmd('hi LspDiagnosticsDefaultError')
+        -- vim.cmd('hi DiagnosticError')
 end
 vim.api.nvim_set_keymap('n', '<Space>d', ':lua toggleDiagnostics()<CR>', {})
 EOF
 
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+"   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+"   ignore_install = { "javascript" }, -- List of parsers to ignore installing
+"   highlight = {
+"     enable = true,              -- false will disable the whole extension
+"     disable = { "rust" },  -- list of language that will be disabled
+"     -- Setting the following item to true will run `:h syntax` and tree-sitter at the same time.
+"     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+"     -- Using this option may slow down your editor, and you may see some duplicate highlights.
+"     -- Instead of true it can also be a list of languages
+"     additional_vim_regex_highlighting = false,
+"     },
+"   incremental_selection = {
+"     enable = true,
+"     keymaps = {
+"       init_selection = "gnn",
+"       node_incremental = "grn",
+"       scope_incremental = "grc",
+"       node_decremental = "grm",
+"     },
+"   },
+" }
+" EOF
