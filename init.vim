@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-vinegar'
+Plug 'stevearc/oil.nvim'
 Plug 'milkypostman/vim-togglelist'
 if exists('g:enableOmniSharp')
     Plug 'OmniSharp/omnisharp-vim'
@@ -198,6 +198,12 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
+" Oil
+lua << EOF
+require("oil").setup()
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+EOF
+
 " Telescope mappings
 lua << EOF
 require("telescope").setup{
@@ -248,6 +254,10 @@ cmp.setup({
                 ['<C-Space>'] = cmp.mapping.complete(),
                 ['<C-e>'] = cmp.mapping.close(),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+                ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         },
 })
 EOF
