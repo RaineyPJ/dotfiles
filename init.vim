@@ -219,7 +219,7 @@ EOF
 " I've used a mix of the lua api and the vim commands. The lua api is more
 " robust and flexible, but the vim commands are a bit easier on the eye
 "nnoremap <leader>ff :Telescope find_files hidden=true<CR>
-nnoremap <leader>ff :lua require("telescope.builtin").find_files{hidden=true, no_ignore=true}<CR>
+nnoremap <leader>ff :lua require("telescope.builtin").find_files{hidden=true, no_ignore=false}<CR>
 nnoremap <leader>fg :Telescope git_files<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fr :Telescope live_grep<CR>
@@ -293,7 +293,7 @@ augroup vimrc
     autocmd FileType cs nnoremap <Leader>; A;<Esc>
     autocmd FileType cs nnoremap L lbiList<<Esc>ea><Esc>
 
-    autocmd FileType py compiler pylint
+    autocmd FileType python compiler pylint
 
     " These are two alternative ways to handle wrapping text.
     " The first just wraps the lines visually, the second inserts real line breaks
