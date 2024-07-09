@@ -147,7 +147,8 @@ tnoremap jk <C-\><C-n>
 vnoremap <Leader>r "+y<C-W><C-L>apaste
 
 set scrolloff=3
-set foldmethod=indent
+set foldmethod=expr
+set foldexpr=v:lua.vim.treesitter.foldexpr()
 set foldlevel=2
 
 " Searching settings
